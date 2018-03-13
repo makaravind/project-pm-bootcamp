@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { UserinfoComponent } from './userinfo/userinfo.component';
 import { HeaderComponent } from './header/header.component';
 
 import { AlertModule } from 'ngx-bootstrap/alert';
@@ -10,6 +11,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 @NgModule({
   declarations: [
     AppComponent,
+    UserinfoComponent
     HeaderComponent,
   ],
   imports: [
