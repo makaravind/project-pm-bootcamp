@@ -1,0 +1,72 @@
+<div class="container">
+<form>
+  <div class="row">
+    <div class="col">
+      <input type="text" id="usr_FName" class="form-control" placeholder="First name">
+    </div>
+    <div class="col">
+      <input type="text" id="usr_LName" class="form-control" placeholder="Last name">
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col">
+      <input type="email" id="usr_Email" class="form-control" placeholder="Email Address">
+    </div>
+    <div class="col">
+      <input type="text" id="usr_Mobile" class="form-control" placeholder="Mobile Number" maxlength="10">
+    </div>
+  </div>
+  <br>
+  <div class="row">
+	  <div class="col">
+        <div class="form-check">
+			<input class="form-check-input" type="radio" name="gridRadios" id="gndr_Male" value="Male" checked>
+			<label class="form-check-label" for="gndr_Male">Male</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gndr_Female" value="Female">
+          <label class="form-check-label" for="gndr_Female">Female</label>
+        </div>
+      </div>
+      <div class="col">
+        <input type="text" id="usr_DOB" class="form-control DOB" placeholder="Enter you Date of Birth">
+      </div>
+    </div>
+    <br>
+  <div class="row nxtBtn">
+    <button type="button" class="btn btn-primary">Next</button>
+  </div>
+  <br><br><br>
+  <div class="row">
+    <div class="col">
+      <textarea minlength="140" class="form-control" placeholder="Tell me about yourself"></textarea>
+    </div>
+    <div class="col">
+        <div class="btn-group" dropdown>
+            <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+              Select your Country <span class="caret"></span>
+            </button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+              <li role="menuitem" *ngFor="let country of countries index as i;">
+                  <span>{{country}}</span>
+               </li>
+            </ul>
+          </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col">
+      <input type="email" id="usr_Email" class="form-control" placeholder="Email Address">
+    </div>
+    <div class="col">
+      <input type="text" id="usr_Mobile" class="form-control" placeholder="Mobile Number" maxlength="10">
+    </div>
+  </div>
+  <br>
+  <div class="row nxtBtn">
+    <button type="button" class="btn btn-success">Submit</button>
+  </div>
+</form>
+</div>
