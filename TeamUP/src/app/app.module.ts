@@ -3,14 +3,18 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
 
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AlertModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
