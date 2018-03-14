@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../models/User";
 
 @Component({
   selector: 'app-userinfo',
@@ -6,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./userinfo.component.css']
 })
 export class UserinfoComponent implements OnInit {
+
+  user = new User('', '', '');
   countries = ["Australia","India","USA"];
-  constructor() { }
+
+  constructor() {
+    // this.user.firstName = '';
+  }
 
   ngOnInit() {
-    
   }
 
 }

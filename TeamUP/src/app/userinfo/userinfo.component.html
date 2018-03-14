@@ -1,17 +1,18 @@
 <div class="container">
-<form>
+  <form>
   <div class="row">
     <div class="col">
-      <input type="text" id="usr_FName" class="form-control" placeholder="First name">
+      <input type="text" id="usr_FName" class="form-control" placeholder="First name" name="firstName" [(ngModel)]="user.firstName">
     </div>
     <div class="col">
-      <input type="text" id="usr_LName" class="form-control" placeholder="Last name">
+      <input type="text" id="usr_LName" class="form-control" placeholder="Last name" name="lastName" [(ngModel)]="user.lastName">
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col">
-      <input type="email" id="usr_Email" class="form-control" placeholder="Email Address">
+      <!--TODO: add unique ids-->
+      <input type="email" id="usr_Email" class="form-control" placeholder="Email Address" name="email" [(ngModel)]="user.email">
     </div>
     <div class="col">
       <input type="text" id="usr_Mobile" class="form-control" placeholder="Mobile Number" maxlength="10">
