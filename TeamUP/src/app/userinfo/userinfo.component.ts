@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../models/User";
+import { User } from '../models/UserBasics';
+import { UserProfile } from '../models/UserProfile';
 
 @Component({
   selector: 'app-userinfo',
@@ -8,8 +9,9 @@ import {User} from "../models/User";
 })
 export class UserinfoComponent implements OnInit {
 
-  user = new User('', '', '');
-  countries = ["Australia","India","USA"];
+  userBasics = new User('', '', '', '', '', '', '');
+  userProfile = new UserProfile('', '', '', '', '', '');
+  industries = ["Business","Technical","Services"];
 
   constructor() {
     // this.user.firstName = '';
