@@ -14,6 +14,10 @@ export class UserBasicComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+  }
+  saveUserbasicinfo(){
+    console.log(this.userBasics);
   }
 
 }
