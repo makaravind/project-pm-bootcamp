@@ -1,0 +1,9 @@
+<accordion [closeOthers]="oneAtATime">
+
+  <accordion-group heading="{{user.fisrtName}}" *ngFor="let user of users">
+    <p>{{user.about}}</p>
+    <button type="button" class="btn btn-primary" (click)="initiateChat()">
+      Chat
+    </button>
+  </accordion-group>
+</accordion>
