@@ -9,12 +9,14 @@ import { HeaderComponent } from './header/header.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import {AppRoutes} from "./header/app.routes";
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import {HomeComponent} from "./home/home.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     PagenotfoundComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
