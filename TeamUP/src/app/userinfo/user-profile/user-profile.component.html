@@ -1,0 +1,81 @@
+<div class="container">
+  <form>
+    <div class="row">
+      <div class="col">
+        <!-- <div class="btn-group" dropdown>
+            <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+              Select your Country <span class="caret"></span>
+            </button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+              <li role="menuitem" *ngFor="let country of countries index as i;">
+                  <span><a href="#" [(ngModel)]="">{{country}}</a></span>
+               </li>
+            </ul>
+          </div> -->
+        <input type="text"  name="experience" [(ngModel)]="userProfile.experience" id="usrExperience" class="form-control" placeholder="How many years of Experience you have?">
+        <br>
+        <!-- <div class="btn-group" dropdown>
+            <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+              Select your Industry Type <span class="caret"></span>
+            </button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+              <li role="menuitem" *ngFor="let industry of industries index as i;" [(ngModel)]="userProfile.industryType">
+                  <span><a href="#">{{industry}}</a></span>
+               </li>
+            </ul>
+          </div> -->
+        <div class="btn-group" dropdown>
+          <label>Select your Business Type: &nbsp;</label>
+          <select>
+            <option *ngFor="let industry of industries" value= {{industry.iTypeid}}>
+              {{industry.iTypename}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <input type="text"  name="experienceOfMin" [(ngModel)]="userProfile.experienceOfMin" id="usrExperienceMin" class="form-control" placeholder="Min years of Experience looking for?">
+          </div>
+          <div class="col">
+            <input type="text"  name="experienceOfMax" [(ngModel)]="userProfile.experienceOfMax" id="usrExperienceMax" class="form-control" placeholder="Max years of Experience looking for?">
+            <br>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <!-- <div class="btn-group" dropdown>
+                <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                  Select your Industry Type you are looking for? <span class="caret"></span>
+                </button>
+                <ul *dropdownMenu class="dropdown-menu" role="menu">
+                  <li role="menuitem" *ngFor="let industry of industries index as i;" [(ngModel)]="userProfile.industryTypeOf">
+                      <span><a href="#">{{industry}}</a></span>
+                   </li>
+                </ul>
+              </div> -->
+            <div class="btn-group" dropdown>
+              <label>Select your required Business Type: &nbsp;</label>
+              <select>
+                <option *ngFor="let industry of industriesOf" value= {{industry.iTypeOfid}}>
+                  {{industry.iTypeOfname}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <!-- <div class="row">
+      <div class="col">
+        <input type="text" id="usr_indType" [(ngModel)]="userProfile.industryType" name="industryType" class="form-control" placeholder="Help us with your industry type">
+      </div>
+    </div> -->
+    <br>
+    <div class="row nxtBtn">
+      <button type="button" class="btn btn-success">Submit</button>
+    </div>
+  </form>
+</div>
