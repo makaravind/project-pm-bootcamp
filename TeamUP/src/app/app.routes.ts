@@ -9,6 +9,7 @@ import {MatchesComponent} from "./userinfo/matches/matches.component";
 
 export const AppRoutes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'user',
     component: UserinfoComponent,
@@ -31,7 +32,7 @@ export const AppRoutes: Routes = [
       },
 
     ]
-    
+
   },
   { path: '**', component: PagenotfoundComponent }
 ];

@@ -7,6 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'TeamUp';
-  caption = 'match-maker for co-founders';
+
 }

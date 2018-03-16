@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  title = 'TeamUp';
+  caption = 'match-maker for co-founders';
+
   constructor() { }
 
   ngOnInit() {

@@ -10,6 +10,7 @@ export class DashboardComponent implements OnInit {
 
   @Output() isImplemented: EventEmitter<any> = new EventEmitter();
 
+  panelClass: String = 'panel';
   oneAtATime: boolean = true;
 
   users = [];
