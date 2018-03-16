@@ -18,6 +18,8 @@ import {DashboardComponent} from './userinfo/dashboard/dashboard.component';
 import {AccordionModule} from 'ngx-bootstrap/accordion';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { MatchesComponent } from './userinfo/matches/matches.component';
+import { ChatComponent } from './chat/chat.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { MatchesComponent } from './userinfo/matches/matches.component';
     UserProfileComponent,
     DashboardComponent,
     MatchesComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
