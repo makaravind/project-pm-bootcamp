@@ -1,0 +1,15 @@
+<div class="container mt-5">
+
+  <h4>Suggestions</h4>
+
+  <accordion [closeOthers]="oneAtATime">
+    <accordion-group heading="{{user.fisrtName}}" [panelClass]="panelClass" *ngFor="let user of users">
+      <h6>{{user.about}}</h6>
+      <div>
+        <button type="button" class="btn btn-primary" (click)="initiateChat()">
+          Chat
+        </button>
+      </div>
+    </accordion-group>
+  </accordion>
+</div>

@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../models/UserBasics';
-import { UserProfile } from '../models/UserProfile';
-import { industryType } from '../models/UserProfile';
-import { industryTypeOf } from '../models/UserProfile';
+import {UserService} from "./user.service";
 
 @Component({
   selector: 'app-userinfo',
   templateUrl: './userinfo.component.html',
-  styleUrls: ['./userinfo.component.css']
+  styleUrls: ['./userinfo.component.css'],
+  providers: [UserService]
 })
 export class UserinfoComponent implements OnInit {
 
@@ -17,5 +15,4 @@ export class UserinfoComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

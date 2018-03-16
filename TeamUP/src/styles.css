@@ -4,5 +4,22 @@
 }
 
 .bg-primary {
-  background-color: #1e688b!important;
+  background: linear-gradient(to left,#7b4397,#dc2430)!important;
+}
+
+.btn-primary {
+  background: linear-gradient(to left,#7b4397,#dc2430)!important;
+  border: whitesmoke;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(to right,#7b4397,#dc2430)!important;
+}
+
+.btn-primary:active {
+  transform: translateY(4px);
+}
+
+.text-primary {
+  color: white!important;
 }
