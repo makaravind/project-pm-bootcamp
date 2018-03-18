@@ -23,3 +23,7 @@
 .text-primary {
   color: white!important;
 }
+
+.ng-touched .ng-invalid {
+  border-bottom-color: #dc2430;
+}
