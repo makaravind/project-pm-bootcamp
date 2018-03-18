@@ -1,43 +1,43 @@
 <div class="container mt-5">
   <h4>Basic Information</h4>
-  <form>
+  {{basicsForm.valid}}
+  <form novalidate #basicsForm="ngForm" (ngSubmit)="saveUserbasicinfo(basicsForm.value)">
     <div class="row">
       <div class="col">
-        <input type="text" id="usr_FName" class="form-control" placeholder="First name" name="firstName" [(ngModel)]="userBasics.firstName">
+        <input required type="text" id="usr_FName" class="form-control" placeholder="First name" name="firstName" [(ngModel)]="userBasics.firstName">
       </div>
       <div class="col">
-        <input type="text" id="usr_LName" class="form-control" placeholder="Last name" name="lastName" [(ngModel)]="userBasics.lastName">
+        <input required type="text" id="usr_LName" class="form-control" placeholder="Last name" name="lastName" [(ngModel)]="userBasics.lastName">
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col">
-        <!--TODO: add unique ids-->
-        <input type="email" id="usr_Email" class="form-control" placeholder="Email Address" name="email" [(ngModel)]="userBasics.email">
+        <input required type="email" id="usr_Email" class="form-control" placeholder="Email Address" name="email" [(ngModel)]="userBasics.email">
       </div>
       <div class="col">
-        <input type="text" name="mobilenumber" id="usr_Mobile" class="form-control" [(ngModel)]="userBasics.mobilenumber" placeholder="Mobile Number" maxlength="10">
+        <input required type="text" name="mobilenumber" id="usr_Mobile" class="form-control" [(ngModel)]="userBasics.mobilenumber" placeholder="Mobile Number" maxlength="10">
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col">
         <div class="form-check">
-          <input class="form-check-input" name="male" [(ngModel)]="userBasics.gender_male" type="radio" name="gridRadios" id="gndr_Male" value="Male" checked>
+          <input required class="form-check-input" name="male" [(ngModel)]="userBasics.gender_male" type="radio" name="gridRadios" id="gndr_Male" value="Male" checked>
           <label class="form-check-label" for="gndr_Male">Male</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" name="female" [(ngModel)]="userBasics.gender_female" type="radio" name="gridRadios" id="gndr_Female" value="Female">
+          <input required class="form-check-input" name="female" [(ngModel)]="userBasics.gender_female" type="radio" name="gridRadios" id="gndr_Female" value="Female">
           <label class="form-check-label" for="gndr_Female">Female</label>
         </div>
       </div>
       <div class="col">
-        <input type="text" id="usr_DOB" name="dob" [(ngModel)]="userBasics.dob" class="form-control DOB" placeholder="Enter you Date of Birth in DD/MM/YYYY">
+        <input required type="text" id="usr_DOB" name="dob" [(ngModel)]="userBasics.dob" class="form-control DOB" placeholder="Enter you Date of Birth in DD/MM/YYYY">
       </div>
     </div>
     <br>
     <div class="row nxtBtn">
-      <button (click)="saveUserbasicinfo()" type="button" class="btn btn-primary">Next</button>
+      <button type="submit" class="btn btn-primary">Next</button>
     </div>
   </form>
 </div>

@@ -17,3 +17,7 @@
     </ul>
   </div>
 </nav>
+
+<div *ngIf="gotMessage" class="alert" [class]="notyMessage.type" role="alert">
+  {{notyMessage.message}}
+</div>

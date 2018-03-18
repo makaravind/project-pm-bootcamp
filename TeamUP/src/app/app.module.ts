@@ -18,6 +18,7 @@ import {DashboardComponent} from './userinfo/dashboard/dashboard.component';
 import {AccordionModule} from 'ngx-bootstrap/accordion';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { MatchesComponent } from './userinfo/matches/matches.component';
+import {NotificationService} from "./notification.service";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { MatchesComponent } from './userinfo/matches/matches.component';
     ButtonsModule.forRoot(),
 
   ],
-  providers: [],
+  providers: [NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

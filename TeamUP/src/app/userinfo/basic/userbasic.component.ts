@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../models/UserBasics";
-import {industryType, industryTypeOf, UserProfile} from "../../models/UserProfile";
-import { Router } from '@angular/router';
-import { Command } from 'protractor';
+import {Router} from '@angular/router';
+import {NotificationService} from "../../notification.service";
+import {NotyMessage} from "../../models/NotyMessage";
 
 @Component({
   selector: 'app-basic',
@@ -13,10 +13,11 @@ export class UserBasicComponent implements OnInit {
 
   userBasics = new User('', '', '', '', '', '', '');
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private notyService: NotificationService) { }
 
   ngOnInit() {
-
+    const _message: NotyMessage = new NotyMessage('user is invalid', 'alert-danger');
+    this.notyService.getErrorObserver().next(_message);
   }
   saveUserbasicinfo(){
     console.log(this.userBasics);
