@@ -9,7 +9,7 @@ const config = {
       name: 'backend'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/backend-development'
+    db: 'mongodb://localhost/teamup-development'
   },
 
   test: {
@@ -18,7 +18,7 @@ const config = {
       name: 'backend'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/backend-test'
+    db: 'mongodb://localhost/teamup-test'
   },
 
   production: {
@@ -27,7 +27,7 @@ const config = {
       name: 'backend'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/backend-production'
+    db: 'mongodb://localhost/teamup-production'
   }
 };
 
