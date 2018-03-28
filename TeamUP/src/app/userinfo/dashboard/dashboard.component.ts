@@ -16,7 +16,6 @@ export class DashboardComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUserAndStoreSession();
     // console.log('user in dashboard... ', this.user);
     /*this.userService.getUsers().subscribe((response) => {
       console.log(response);

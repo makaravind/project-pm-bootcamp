@@ -1,3 +1,4 @@
+
 const express = require('express');
 const glob = require('glob');
 
@@ -10,6 +11,7 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const cors = require('cors');
 const session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 const LinkedinStrategy = require('passport-linkedin-oauth2').Strategy;
 
 const mongoose = require('mongoose');
@@ -24,35 +26,26 @@ module.exports = (app, config) => {
   app.set('view engine', 'jade');
 
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
-  var originsWhitelist = [
-    'http://localhost:3000',
-  ];
-  var corsOptions = {
-    origin: function(origin, callback){
-      console.log('cors called ');
-      var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
-      callback(null, isWhitelisted);
-    },
-    credentials:true
-  }
-  app.use(cors(corsOptions));
- /* app.all('/!*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", '*');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });*/
+  app.use(cors());
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
     extended: true
   }));
-  app.use(cookieParser());
+  app.use(cookieParser(config.sessionSecret));
   app.use(compress());
   app.use(express.static(config.root + '/app/views'));
   app.use(methodOverride());
 
-  app.use(session({secret: 'keyboard cat'}));
+  app.use(session({
+    secret: config.sessionSecret,
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      url: config.db
+      // mongoOptions: advancedOptions // See below for details
+    })
+  }));
   app.use(passport.initialize());
   app.use(passport.session());
 
@@ -68,7 +61,7 @@ module.exports = (app, config) => {
   passport.use(new LinkedinStrategy({
       clientID: config.LINKEDIN_CLIENT_ID,
       clientSecret: config.LINKEDIN_CLIENT_SECRET,
-      callbackURL: "http://127.0.0.1:3000/api/auth/linkedin/callback",
+      callbackURL: "http://localhost:3000/api/auth/linkedin/callback",
       scope: ['r_basicprofile', 'r_emailaddress'],
       passReqToCallback: true
     },

@@ -10,15 +10,17 @@ export class HomeComponent implements OnInit {
 
   title = 'TeamUp';
   caption = 'match-maker for co-founders';
+  session = this.userService.getSession();
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    // this.userService.getUserAndStoreSession();
   }
 
 
   login() {
-    this.userService.login();
+
   }
 
 }

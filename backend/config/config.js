@@ -12,6 +12,7 @@ const config = {
     db: 'mongodb://localhost/teamup-development',
     LINKEDIN_CLIENT_ID: "81e75vubzj4civ",
     LINKEDIN_CLIENT_SECRET: "RvUTfNGvw6TLPhys",
+    sessionSecret: 'BJNRvSLbio',
   },
 
   test: {

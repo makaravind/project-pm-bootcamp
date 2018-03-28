@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 module.exports = (app) => {
-  app.use('/api/users', router);
+  app.use('/api/usersd', router);
 };
 
 /* GET users listing.  /users/suggestions   */

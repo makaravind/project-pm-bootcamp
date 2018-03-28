@@ -8,13 +8,24 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/home">Home</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="userSession">
         <a class="nav-link" routerLink="/user/dashboard">Dashboard</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="userSession">
         <a class="nav-link" routerLink="/user/matches">My Matches</a>
       </li>
     </ul>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <span class="text-white" *ngIf="userSession">
+      <a [routerLink]="['user/profile']" class="text-white">
+      <img [src]="userSession.imageUrl" class="user-image img-circle" width="50" /> {{userSession.email}} </a>
+      <a href="/api/auth/logout" class="btn btn-primary ">Logout</a>
+    </span>
+    <span *ngIf="!userSession">
+      <a href="/api/auth/linkedin" class="btn btn-primary">Login</a>
+    </span>
   </div>
 </nav>
 

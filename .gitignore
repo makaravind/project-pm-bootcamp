@@ -1,2 +1,4 @@
 inspectionProfiles
 /.idea/inspectionProfiles/profiles_settings.xml
+.bin
+views

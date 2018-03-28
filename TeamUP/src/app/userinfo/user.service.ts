@@ -17,25 +17,12 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  login() {
-    console.log('logging in...');
-    this.http.get('http://localhost:3000/api/auth/linkedin').subscribe(response => {
-      console.log('login response ', response);
-    });
-  }
-
   getSession() {
     return JSON.parse(localStorage.getItem("userSession"));
   }
 
   getUserAndStoreSession() {
-    return this.http.get('http://localhost:3000/api/auth/getCurrentSession', {}).subscribe(session => {
-      const user = session['user'];
-      if (user != null) {
-        localStorage.setItem('userSession', JSON.stringify(user));
-        this.userSession = user;
-      }
-    });
+    return this.http.get('http://localhost:3000/api/auth/getCurrentSession', {});
   }
 
   getUsers() {

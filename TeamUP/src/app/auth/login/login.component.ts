@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth.service";
 import {NotificationService} from "../../notification.service";
 import {NotyMessage} from "../../models/NotyMessage";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {UserService} from "../../userinfo/user.service";
 
 @Component({
   selector: 'app-login',
@@ -15,14 +16,13 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private notyService: NotificationService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router,
+              private userService: UserService) { }
 
   ngOnInit() {
-
-    this.route.params.subscribe((params) => {
-      console.log('login params ', params);
-    });
-
+    this.userService.getUserAndStoreSession();
+    this.router.navigateByUrl('/home');
   }
 
 }

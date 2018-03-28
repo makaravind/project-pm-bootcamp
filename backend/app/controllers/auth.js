@@ -18,6 +18,11 @@ router.get('/linkedin',
 router.get('/linkedin/callback',
   passport.authenticate('linkedin', {failureRedirect: '/login'}),
   function (req, res) {
+    console.log('--------------------called back.... ', req.session.user);
+    // var old = req.session;
+    // // if(!err) {
+    //   req.session.isAdmin = true;
+    // // }
     res.redirect('/');
   });
 
@@ -27,12 +32,18 @@ router.get('/account', ensureAuthenticated, function (req, res) {
 
 router.get('/getCurrentSession', function (req, res, next) {
   const sessionObj = {user: null};
+  console.log('req.session', req.session);
   if (req.session && req.session.user) {
     sessionObj.user = req.session.user;
   }
   res.json(sessionObj)
 });
 
+router.get('/logout', function (req, res, next) {
+  req.session.destroy(function (err) {
+    res.redirect("/");
+  });
+});
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
