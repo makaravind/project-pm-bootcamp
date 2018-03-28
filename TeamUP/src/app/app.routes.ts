@@ -6,8 +6,16 @@ import {UserBasicComponent} from "./userinfo/basic/userbasic.component";
 import {UserProfileComponent} from "./userinfo/user-profile/user-profile.component";
 import {ChatComponent} from "./chat/chat.component";
 import {MatchesComponent} from "./userinfo/matches/matches.component";
+import {DashboardComponent} from "./userinfo/dashboard/dashboard.component";
+import {LoginComponent} from "./auth/login/login.component";
 
 export const AppRoutes: Routes = [
+  {
+    path: 'login', component: LoginComponent,
+    children: [
+      { path: '', component: LoginComponent },
+    ]
+  },
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {

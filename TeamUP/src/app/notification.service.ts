@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Subject} from "rxjs/Subject";
+import {NotyMessage} from "./models/NotyMessage";
 
 @Injectable()
 export class NotificationService {
@@ -10,5 +11,9 @@ export class NotificationService {
 
   getErrorObserver() {
     return this.gotError;
+  }
+
+  emitError(message: NotyMessage) {
+    this.gotError.next(message);
   }
 }

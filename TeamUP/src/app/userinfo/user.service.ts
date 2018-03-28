@@ -1,23 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class UserService {
 
-  private users = [
-    {
-      fisrtName: 'Pawan',
-      about: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
-
-    },
-    {
-      fisrtName: 'Aravind',
-      about: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\'',
-    },
-    {
-      fisrtName: 'Shankar',
-      about: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old',
-    }
-  ];
+  private userSession = null;
+  private users = [];
 
   private matches = [
     {
@@ -26,10 +14,32 @@ export class UserService {
     }
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+  }
+
+  login() {
+    console.log('logging in...');
+    this.http.get('http://localhost:3000/api/auth/linkedin').subscribe(response => {
+      console.log('login response ', response);
+    });
+  }
+
+  getSession() {
+    return JSON.parse(localStorage.getItem("userSession"));
+  }
+
+  getUserAndStoreSession() {
+    return this.http.get('http://localhost:3000/api/auth/getCurrentSession', {}).subscribe(session => {
+      const user = session['user'];
+      if (user != null) {
+        localStorage.setItem('userSession', JSON.stringify(user));
+        this.userSession = user;
+      }
+    });
+  }
 
   getUsers() {
-    return this.users;
+    return this.http.get('http://localhost:3000/api/users/suggestions');
   }
 
   getMatches() {

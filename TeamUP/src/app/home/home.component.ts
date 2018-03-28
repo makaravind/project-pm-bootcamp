@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../userinfo/user.service";
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,14 @@ export class HomeComponent implements OnInit {
   title = 'TeamUp';
   caption = 'match-maker for co-founders';
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+  }
+
+
+  login() {
+    this.userService.login();
   }
 
 }

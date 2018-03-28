@@ -4,7 +4,8 @@
       <div class="header-content mx-auto">
         <h1 class="mb-5 text-primary">{{ title }}</h1>
         <h4 class="text-primary">{{ caption }}</h4>
-        <input routerLink="../user/basic" type="button" class="btn btn-primary btn-lg" value="Start Now!">
+        <input (click)="login()" type="button" class="btn btn-primary btn-lg" value="Start Now!">
+        <a href="http://localhost:3000/api/auth/linkedin">login</a>
       </div>
     </div>
     <div class="col-lg-5 my-auto">

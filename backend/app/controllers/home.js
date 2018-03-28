@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Article = mongoose.model('Article');
 
 module.exports = (app) => {
-  app.use('/', router);
+  app.use('/api/', router);
 };
 
 router.get('/', (req, res, next) => {

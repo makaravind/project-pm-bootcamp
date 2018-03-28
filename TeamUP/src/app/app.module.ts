@@ -16,11 +16,14 @@ import {UserBasicComponent} from "./userinfo/basic/userbasic.component";
 import {UserProfileComponent} from './userinfo/user-profile/user-profile.component';
 import {DashboardComponent} from './userinfo/dashboard/dashboard.component';
 import {AccordionModule} from 'ngx-bootstrap/accordion';
-import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import { MatchesComponent } from './userinfo/matches/matches.component';
+import {ButtonsModule} from 'ngx-bootstrap/buttons';
+import {MatchesComponent} from './userinfo/matches/matches.component';
 import {NotificationService} from "./notification.service";
-import { ChatComponent } from './chat/chat.component';
-import { ChatComponent } from './chat/chat.component';
+import {ChatComponent} from './chat/chat.component';
+import {LoginComponent} from './auth/login/login.component';
+import {AuthService} from "./auth/auth.service";
+import {HttpClientModule} from "@angular/common/http";
+import {UserService} from "./userinfo/user.service";
 
 @NgModule({
   declarations: [
@@ -34,9 +37,11 @@ import { ChatComponent } from './chat/chat.component';
     DashboardComponent,
     MatchesComponent,
     ChatComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AlertModule.forRoot(),
     BsDropdownModule.forRoot(),
     FormsModule,
@@ -48,7 +53,7 @@ import { ChatComponent } from './chat/chat.component';
     ButtonsModule.forRoot(),
 
   ],
-  providers: [NotificationService],
+  providers: [NotificationService, AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,8 +8,6 @@ import {UserService} from "../user.service";
 })
 export class DashboardComponent implements OnInit {
 
-  @Output() isImplemented: EventEmitter<any> = new EventEmitter();
-
   panelClass: String = 'panel';
   oneAtATime: boolean = true;
 
@@ -18,12 +16,18 @@ export class DashboardComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.users = this.userService.getUsers();
+    this.userService.getUserAndStoreSession();
+    // console.log('user in dashboard... ', this.user);
+    /*this.userService.getUsers().subscribe((response) => {
+      console.log(response);
+      if(response['data']) {
+        this.users = response['data'];
+      }
+    });*/
   }
 
   onLike(user) {
     console.log('liked');
-    this.isImplemented.emit(false)
   }
 
   onDislike() {
