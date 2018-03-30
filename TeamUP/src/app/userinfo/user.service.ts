@@ -22,14 +22,19 @@ export class UserService {
   }
 
   getUserAndStoreSession() {
-    return this.http.get('http://localhost:3000/api/auth/getCurrentSession', {});
+    return this.http.get('/api/auth/getCurrentSession', {});
   }
 
   getUsers() {
-    return this.http.get('http://localhost:3000/api/users/suggestions');
+    return this.http.get('/api/auth/suggestions');
+  }
+
+  postLike(params) {
+    return this.http.post('/api/auth/like', params);
   }
 
   getMatches() {
-    return this.matches;
+    console.log('my macthes');
+    return this.http.get('/api/auth/matches');
   }
 }

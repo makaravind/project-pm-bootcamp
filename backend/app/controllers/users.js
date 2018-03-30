@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var UserModel = require('../models/user');
 
 module.exports = (app) => {
-  app.use('/api/usersd', router);
+  app.use('/api/users', router);
 };
 
-/* GET users listing.  /users/suggestions   */
+/* GET users listing.  /api/users/suggestions   */
 
 router.get('/suggestions', function (req, res, next) {
 
@@ -24,11 +25,13 @@ router.get('/suggestions', function (req, res, next) {
       about: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old',
     }
   ];
-
-  res.json({
-    data: users,
-    error: null,
-    extra: 'Success'
+  const currentUserID = req.session.user.id;
+  UserModel.find({id: {$ne: currentUserID}}, function (err, users) {
+    res.json({
+      data: users,
+      error: null,
+      extra: 'Success'
+    });
+    res.end();
   });
-  res.end();
 });

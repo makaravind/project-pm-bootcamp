@@ -1,5 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserService} from "../user.service";
+import {NotificationService} from "../../notification.service";
+import {NotyMessage} from "../../models/NotyMessage";
 
 @Component({
   selector: 'app-dashboard',
@@ -13,20 +15,21 @@ export class DashboardComponent implements OnInit {
 
   users = [];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private notyService: NotificationService) { }
 
   ngOnInit() {
-    // console.log('user in dashboard... ', this.user);
-    /*this.userService.getUsers().subscribe((response) => {
-      console.log(response);
+    this.userService.getUsers().subscribe((response) => {
       if(response['data']) {
         this.users = response['data'];
       }
-    });*/
+    });
   }
 
   onLike(user) {
-    console.log('liked');
+    this.userService.postLike({user: user.id}).subscribe(res => {
+      this.users = this.users.filter(u => u.id != user.id);
+      this.notyService.emitError(new NotyMessage('Liked!', 'success'));
+    });
   }
 
   onDislike() {

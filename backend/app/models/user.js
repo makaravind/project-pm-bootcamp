@@ -17,6 +17,8 @@ const UserSchema = new mongoose.Schema({
   numConnections: Number,
   // exprience: Number // calculate from positions field
   providerData: Schema.Types.Mixed,
+  likes: [new Schema({userId: String, created: {type: Date, default: Date.now}})],
+  matches: [new Schema({userId: String, created: {type: Date, default: Date.now}})],
   lastUpdated: {type: Date, default: Date.now},
 });
 

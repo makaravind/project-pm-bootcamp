@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../user.service";
+import {NotyMessage} from "../../models/NotyMessage";
 
 @Component({
   selector: 'app-matches',
@@ -13,7 +14,11 @@ export class MatchesComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.users = this.userService.getMatches();
+    this.userService.getMatches().subscribe(response => {
+      if(response['data']) {
+        this.users = response['data'];
+      }
+    });
   }
 
   initiateChat() {
