@@ -32,7 +32,10 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  onDislike() {
-    console.log('disliked');
+  onDislike(user) {
+    this.userService.postDisLike({user: user.id}).subscribe(res => {
+      this.users = this.users.filter(u => u.id != user.id);
+      this.notyService.emitError(new NotyMessage('DisLiked!', 'success'));
+    });
   }
 }

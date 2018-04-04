@@ -15,10 +15,14 @@ const UserSchema = new mongoose.Schema({
   industry: String,
   location: String,
   numConnections: Number,
-  // exprience: Number // calculate from positions field
+  experience: Number,
+  lookingExperience: Number,
   providerData: Schema.Types.Mixed,
   likes: [new Schema({userId: String, created: {type: Date, default: Date.now}})],
+  dislikes: [new Schema({userId: String, created: {type: Date, default: Date.now}})],
   matches: [new Schema({userId: String, created: {type: Date, default: Date.now}})],
+  businessType: String,
+  lookingBusinessType: String,
   lastUpdated: {type: Date, default: Date.now},
 });
 
