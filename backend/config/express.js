@@ -1,4 +1,3 @@
-
 const express = require('express');
 const glob = require('glob');
 
@@ -98,7 +97,8 @@ module.exports = (app, config) => {
                 providerData: profile._json,
                 profileUrl: profile._json.publicProfileUrl,
                 industry: profile._json.industry,
-                numConnections: profile._json.numConnections
+                numConnections: profile._json.numConnections,
+                experience: calculateExp(profile._json.positions.values)
               });
               console.log('authenticated and created a new user');
               user.save(function (err, data) {
@@ -111,6 +111,21 @@ module.exports = (app, config) => {
       });
     }
   ));
+
+  function calculateExp(positions) {
+    if(positions) {
+      // find min
+      const first = positions.reduce((min, c) => min['startDate']['year'] > c['startDate']['year'] ? c : min, positions[0]);
+
+      // current
+      const currentYear = new Date().getFullYear();
+
+      // find max
+      // const latest = positions.reduce((max, c) => max['startDate']['year'] < c['startDate']['year'] ? c : max, positions[0]);
+
+      return currentYear - first['startDate']['year'];
+    }
+  }
 
   var controllers = glob.sync(config.root + '/app/controllers/*.js');
   controllers.forEach((controller) => {

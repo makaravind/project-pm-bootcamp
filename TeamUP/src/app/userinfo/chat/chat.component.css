@@ -1,0 +1,5 @@
+.chat-container {
+  height: 400px;
+  overflow: auto;
+  background-color: rgba(220, 36, 48, 0.46);
+}

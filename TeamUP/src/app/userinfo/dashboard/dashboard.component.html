@@ -2,8 +2,15 @@
 
   <h4>Suggestions</h4>
 
+  <div class="text-muted" *ngIf="users.length === 0">There are no suggestions for now, come back later!</div>
+
   <accordion [closeOthers]="oneAtATime">
-    <accordion-group heading="{{user.displayName}}" [panelClass]="panelClass" *ngFor="let user of users">
+    <accordion-group [panelClass]="panelClass" *ngFor="let user of users">
+      <div accordion-heading class="clearfix">
+        <img [src]="user.imageUrl" class="user-image img-circle" width="50"/>
+        {{user.displayName}}
+        <span class="badge badge-secondary float-right pull-right">{{user.providerData.location.name}}</span>
+      </div>
       <h6>{{user.providerData.summary}}</h6>
       <div>
         <button type="button" class="btn btn-primary" (click)="onLike(user)">

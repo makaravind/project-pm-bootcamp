@@ -1,20 +1,30 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import * as io from "socket.io-client";
+import {NotificationService} from "../notification.service";
 
 @Injectable()
 export class UserService {
 
   private userSession = null;
   private users = [];
+  private socket: SocketIOClient.Socket;
 
-  private matches = [
-    {
-      fisrtName: 'Shankar',
-      about: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old',
+  constructor(private http: HttpClient, private notyService: NotificationService) {
+    this.notyService.getConnectWS$().subscribe(m => this.connectWS());
+  }
+
+  getSocket() {
+    if(!this.socket) {
+      this.connectWS();
     }
-  ];
+    return this.socket;
+  }
 
-  constructor(private http: HttpClient) {
+  connectWS() {
+    this.socket = io.connect();
+    console.log('WS Connected');
+    this.socket.emit('new user', {userID: this.getSession().id})
   }
 
   getSession() {
@@ -25,12 +35,24 @@ export class UserService {
     return this.http.get('/api/auth/getCurrentSession', {});
   }
 
+  getMessageHistory(params) {
+    return this.http.post('/api/auth/messages', params);
+  }
+
+  getChats() {
+    return this.http.get('/api/auth/chats');
+  }
+
   getUsers() {
     return this.http.get('/api/auth/suggestions');
   }
 
   postLike(params) {
     return this.http.post('/api/auth/like', params);
+  }
+
+  postDisLike(params) {
+    return this.http.post('/api/auth/dislike', params);
   }
 
   getMatches() {

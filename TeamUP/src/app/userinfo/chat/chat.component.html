@@ -1,0 +1,30 @@
+<div class="container" style="max-height: 80%">
+  <div class="row">
+    <div class="col-md-4">
+      <app-chats-all [chats]="chats"></app-chats-all>
+    </div>
+    <div class="col-md-8">
+
+      <div class="container">
+        <div class="row chat-container">
+          <app-chat-current class="col-md-12" [messages]="messageHistory" [me]="me"></app-chat-current>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-10 margin-auto" style="margin: 0; padding: 0;">
+            <input type="text" class="form-control" id="message-input" placeholder="your message..." [(ngModel)]="message">
+          </div>
+          <div class="col-md-2 margin-auto" style="padding: 0">
+            <button class="btn" (click)="sendMessage()"><i class="icon ion-paper-airplane"></i> </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<form #chatForm="ngForm" name="chatForm">
+  <input type="text" [(ngModel)]="message" name="message">
+  <input type="button" class="btn-primary" value="send" (click)="sendMessage()">
+  <p *ngFor="let m of messageHistory">
+    {{m}}
+  </p>
+</form>-->

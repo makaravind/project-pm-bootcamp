@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row" style="margin-bottom: 20px">
+    <h5>All chats</h5>
+  </div>
+  <div class="row chat" *ngFor="let c of chats" (click)="initiateChat(c)">
+    <div class="col-md-3">
+      <img [src]="c.imageUrl" class="user-image img-circle" width="50"/>
+    </div>
+    <div class="col" style="margin: auto">
+      <h6>{{c.displayName}}</h6>
+    </div>
+  </div>
+</div>

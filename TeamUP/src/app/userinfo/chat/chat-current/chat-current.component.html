@@ -1,0 +1,5 @@
+<div class="container" *ngFor="let m of messages" [ngStyle]="{'margin-left': m.from === me ? 'auto': 'inherit'}">
+  <p [ngStyle]="{'textAlign': m.from === me ? 'right': 'left'}">{{m.message}}</p>
+  <span [class]="[m.from === me ? 'time-right':  'time-left']">{{m.created | date:'HH:mm'}}</span>
+</div>
+

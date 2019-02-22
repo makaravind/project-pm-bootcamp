@@ -33,3 +33,11 @@
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
+
+a {
+  color: #dc2430;
+}
+
+.margin-auto {
+  margin: auto;
+}

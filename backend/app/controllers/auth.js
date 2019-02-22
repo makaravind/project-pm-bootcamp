@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const Article = mongoose.model('Article');
 const passport = require('passport');
 const UserModel = mongoose.model('User');
+const ChatModel = mongoose.model('Chat');
 
 module.exports = (app) => {
   app.use('/api/auth', router);
@@ -42,12 +43,14 @@ router.get('/logout', function (req, res, next) {
 
 router.get('/suggestions', function (req, res, next) {
   const currentUserID = req.session.user.id;
-  // match the bisuness type
   UserModel.find({id: currentUserID}, function (err, users) {
     const me = users[0];
     const dislikeUserIds = [];
     me.dislikes.forEach(d => dislikeUserIds.push(d.userId));
-    const filter = [currentUserID, ...dislikeUserIds];
+
+    const matchesUserIds = [];
+    me.matches.forEach(d => matchesUserIds.push(d.userId));
+    const filter = [currentUserID, ...dislikeUserIds, ...matchesUserIds];
     UserModel.find({id: {$nin: filter}, businessType: me.lookingBusinessType, experience: {$gte: me.lookingExperience}}, function (err, users) {
       res.json({
         data: users,
@@ -171,6 +174,64 @@ router.get('/matches', function (req, res, next) {
     }
   });
 });
+
+router.post('/messages', function (req, res, next) {
+  const currentUserID = req.session.user.id;
+  const to = req.body.id;
+  ChatModel.find({
+    $or : [{'from': currentUserID,'to': to},
+    {'from': to,'to': currentUserID}]
+  }, function (err, data) {
+    if(!err) {
+      res.json({
+        data: data,
+        error: null,
+        extra: 'Success'
+      });
+    } else {
+      res.json({
+        data: null,
+        error: err,
+        extra: 'Success'
+      });
+    }
+  });
+});
+
+router.get('/chats', function (req, res, next) {
+  const currentUserID = req.session.user.id;
+  ChatModel.distinct('to',{'from': currentUserID}, function (err, data) {
+    // get the chats
+    if(!err) {
+      UserModel.find({'id': {$in: data}}, {displayName: 1, id: 1, imageUrl: 1, _id: 0}, function (err, data) {
+        if (!err) {
+          res.json({
+            data: data,
+            error: null,
+            extra: 'Success'
+          });
+        } else {
+          console.error('error getting chats');
+          res.json({
+            data: null,
+            error: err,
+            extra: 'Success'
+          });
+        }
+      })
+
+    } else {
+      console.error('error getting chats');
+      res.json({
+        data: null,
+        error: err,
+        extra: 'Success'
+      });
+    }
+  });
+});
+
+
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {

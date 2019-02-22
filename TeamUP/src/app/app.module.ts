@@ -19,11 +19,13 @@ import {AccordionModule} from 'ngx-bootstrap/accordion';
 import {ButtonsModule} from 'ngx-bootstrap/buttons';
 import {MatchesComponent} from './userinfo/matches/matches.component';
 import {NotificationService} from "./notification.service";
-import {ChatComponent} from './chat/chat.component';
+import {ChatComponent} from './userinfo/chat/chat.component';
 import {LoginComponent} from './auth/login/login.component';
 import {AuthService} from "./auth/auth.service";
 import {HttpClientModule} from "@angular/common/http";
 import {UserService} from "./userinfo/user.service";
+import { ChatCurrentComponent } from './userinfo/chat/chat-current/chat-current.component';
+import { ChatsAllComponent } from './userinfo/chat/chats-all/chats-all.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import {UserService} from "./userinfo/user.service";
     MatchesComponent,
     ChatComponent,
     LoginComponent,
+    ChatCurrentComponent,
+    ChatsAllComponent,
   ],
   imports: [
     BrowserModule,

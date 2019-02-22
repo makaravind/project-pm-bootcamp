@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (res['user'] != null) {
           localStorage.setItem('userSession', JSON.stringify(res['user']));
           this.userSession = res['user'];
+          this.notyService.emitConnectWS$();
         }
       });
   }

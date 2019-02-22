@@ -3,10 +3,28 @@
   <h4>My Matches</h4>
 
   <accordion [closeOthers]="oneAtATime">
-    <accordion-group heading="{{user.displayName}}" [panelClass]="panelClass" *ngFor="let user of users">
+    <accordion-group [panelClass]="panelClass" *ngFor="let user of users">
+      <div accordion-heading class="clearfix">
+        <div class="row">
+          <div class="col-md-1">
+            <img [src]="user.imageUrl" class="user-image img-circle" width="50"/>
+          </div>
+          <div class="col-md-8">
+            <div class="row">
+              <a href="{{user.profileUrl}}"> {{user.displayName}} </a>
+            </div>
+            <div class="row">
+              <small>{{user.providerData.headline}}</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <span class="badge badge-secondary float-right pull-right">{{user.providerData.location.name}}</span>
+          </div>
+        </div>
+      </div>
       <h6>{{user.providerData.summary}}</h6>
       <div>
-        <button type="button" class="btn btn-primary" (click)="initiateChat()">
+        <button type="button" class="btn btn-primary" (click)="initiateChat(user)">
           Chat
         </button>
       </div>
